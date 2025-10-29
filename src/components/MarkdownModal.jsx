@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 import { X } from 'lucide-react';
 
 export const MarkdownModal = ({ item, isOpen, onClose }) => {
@@ -43,6 +44,7 @@ export const MarkdownModal = ({ item, isOpen, onClose }) => {
           <div className="flex-1 overflow-y-auto p-6">
             <div className="prose prose-invert prose-sm md:prose-base max-w-none">
               <ReactMarkdown
+                remarkPlugins={[remarkBreaks]}
                 components={{
                   h1: ({ children }) => (
                     <h1 className="text-3xl font-semibold text-white mb-4 mt-6 first:mt-0">
