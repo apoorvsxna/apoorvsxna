@@ -14,35 +14,36 @@ export const MarkdownModal = ({ item, isOpen, onClose }) => {
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-8">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
         <div 
           className="
             bg-black border-2 border-white/30 
-            w-full max-w-4xl h-[70vh]
+            w-full max-w-4xl h-[80vh] md:h-[70vh]
             flex flex-col
             animate-in fade-in zoom-in-95 duration-300
           "
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-white/20">
-            <div>
-              <h2 className="text-2xl font-medium text-white">{item.name}</h2>
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/20">
+            <div className="flex-1 min-w-0 mr-3">
+              <h2 className="text-lg md:text-2xl font-medium text-white truncate">{item.name}</h2>
               {item.description && (
-                <p className="text-sm text-white/60 mt-1">{item.description}</p>
+                <p className="text-xs md:text-sm text-white/60 mt-1 truncate">{item.description}</p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="text-white/70 hover:text-white transition-colors p-2"
+              className="text-white/70 hover:text-white transition-colors p-1.5 md:p-2 flex-shrink-0"
               aria-label="Close"
             >
-              <X size={24} strokeWidth={1.5} />
+              <X size={20} className="md:hidden" strokeWidth={1.5} />
+              <X size={24} className="hidden md:block" strokeWidth={1.5} />
             </button>
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
-            <div className="prose prose-invert prose-sm md:prose-base max-w-none">
+          <div className="flex-1 overflow-y-auto p-4 md:p-6">
+            <div className="prose prose-invert prose-sm max-w-none">
               <ReactMarkdown
                 remarkPlugins={[remarkBreaks]}
                 components={{
@@ -106,10 +107,10 @@ export const MarkdownModal = ({ item, isOpen, onClose }) => {
               </ReactMarkdown>
             </div>
           </div>
-
+          
           {/* Footer hint */}
-          <div className="p-4 border-t border-white/20 text-center text-sm text-white/50">
-            Press <span className="text-white/70">ESC</span> to close
+          <div className="p-3 md:p-4 border-t border-white/20 text-center text-xs md:text-sm text-white/50">
+            Press <span className="text-white/70">ESC</span> or <span className="text-white/70">×</span> to close
           </div>
         </div>
       </div>

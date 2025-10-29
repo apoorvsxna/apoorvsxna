@@ -28,9 +28,9 @@ export const Header = ({ profile }) => {
   };
 
   return (
-    <div className="fixed top-8 right-8 z-50 flex items-center gap-6">
+    <div className="fixed top-4 right-4 md:top-8 md:right-8 z-50 flex items-center gap-3 md:gap-6">
       {/* Profile Picture */}
-      <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
+      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-white/20">
         <img
           src={import.meta.env.BASE_URL + profile.picture.replace(/^\//, '')}
           alt={profile.name}
@@ -41,19 +41,19 @@ export const Header = ({ profile }) => {
         />
       </div>
 
-      {/* Text Content */}
-      <div className="flex flex-col items-end gap-0.5">
-        <div className="text-white text-sm font-medium tracking-wide">
+      {/* Text Content - hide details on very small screens */}
+      <div className="hidden xs:flex flex-col items-end gap-0.5">
+        <div className="text-white text-xs md:text-sm font-medium tracking-wide">
           {profile.name}
         </div>
-        <div className="text-white/50 text-xs font-light">
+        <div className="text-white/50 text-[10px] md:text-xs font-light">
           {formatDate(currentTime)} {formatTime(currentTime)}
         </div>
         <a
           href={profile.cvLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white/40 text-xs hover:text-white/70 transition-colors mt-1"
+          className="text-white/40 text-[10px] md:text-xs hover:text-white/70 transition-colors mt-0.5 md:mt-1"
         >
           View CV →
         </a>
