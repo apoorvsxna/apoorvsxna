@@ -27,24 +27,26 @@ export const XMBContainer = ({ data }) => {
     handleEscape,
   } = useXMBNavigation(data);
 
-  // Constants for positioning - using viewport units for consistency
-  const HOT_SEAT_X = '35vw'; // Slightly left of center
-  const SECTION_SPACING = '12vw'; // Space between section icons (was 160px)
-  const SECTION_Y = '10vh'; // Y position of section icons from top (was 100px)
-  const ITEM_SPACING = '12vh'; // Vertical space between items (was 120px)
+  // Constants for positioning - PS3 XMB style with consistent spacing
+  // Sections are allowed to overflow viewport to maintain spacing consistency
+  const isMobile = window.innerWidth < 768;
+  const HOT_SEAT_X = isMobile ? '25vw' : '30vw'; // More left on mobile for space
+  const SECTION_SPACING = isMobile ? 120 : 180; // Tighter spacing on mobile but still consistent
+  const SECTION_Y = '12vh'; // Y position of section icons from top
+  const ITEM_SPACING = '11vh'; // Vertical space between items - consistent spacing
   const HOT_SEAT_ITEM_Y = '50vh'; // Vertically centered
-  const SECTION_CUTOFF_THRESHOLD = '20vh'; // Items closer than this to section disappear (was 180px)
+  const SECTION_CUTOFF_THRESHOLD = '22vh'; // Items closer than this to section disappear
 
-  // Calculate section positions
+  // Calculate section positions - sections overflow viewport to maintain consistent spacing
   const getSectionStyle = (index) => {
     const isActive = index === sectionIndex;
-    const baseSpacing = window.innerWidth * 0.12; // 12vw in pixels
-    let translateX = (index - sectionIndex) * baseSpacing;
+    // Fixed spacing - sections will naturally go off-screen if there are many
+    let translateX = (index - sectionIndex) * SECTION_SPACING;
 
     // If folder is expanded, shift active section and all left sections to the left
     if (expandedFolder) {
       if (index <= sectionIndex) {
-        translateX -= window.innerWidth * 0.15; // Shift left sections more to the left
+        translateX -= isMobile ? 150 : 200; // Shift left sections to make room for folder items
       }
     }
 
@@ -57,45 +59,47 @@ export const XMBContainer = ({ data }) => {
     };
   };
 
-  // Calculate item positions
+  // Calculate item positions - items overflow top/bottom to maintain spacing
   const getItemStyle = (index) => {
     const isFocused = index === itemIndex;
     const offset = index - itemIndex;
     
-    // Items are positioned relative to hot seat
-    const itemSpacing = window.innerHeight * 0.12; // 12vh in pixels
+    // Items are positioned relative to hot seat with consistent spacing
+    // Calculate viewport height for cutoff, but use percentage-based spacing
+    const itemSpacing = window.innerHeight * 0.11; // 11vh in pixels
     const translateY = offset * itemSpacing;
     
-    // Calculate if item should be hidden (too close to section)
-    const sectionCutoff = window.innerHeight * 0.20; // 20vh
+    // Calculate if item should be hidden (too close to section icons at top)
+    const sectionCutoff = window.innerHeight * 0.22; // 22vh
     const estimatedItemY = window.innerHeight / 2 + translateY;
     const shouldHide = estimatedItemY < sectionCutoff;
     
     // Z-index: hot seat is highest (20), items above section go below (10), others normal (15)
     let zIndex = 15;
     if (isFocused) {
-      zIndex = 20; // Hot seat
-    } else if (translateY < 0) {
-      zIndex = 10; // Items above section (behind it)
+      zIndex = 20; // Hot seat (focused item)
+    } else if (translateY < 0 && !shouldHide) {
+      zIndex = 10; // Items above hot seat but visible (behind sections)
     }
 
     return {
       position: 'absolute',
-      left: expandedFolder ? `calc(${HOT_SEAT_X} + 8vw)` : HOT_SEAT_X,
+      left: expandedFolder ? `calc(${HOT_SEAT_X} + 10vw)` : HOT_SEAT_X,
       top: HOT_SEAT_ITEM_Y,
       transform: `translateY(${translateY}px)`,
       zIndex,
       opacity: shouldHide ? 0 : 1,
       pointerEvents: shouldHide ? 'none' : 'auto',
+      transition: 'all 0.3s ease-out',
     };
   };
 
-  // Check if there are hidden items above
+  // Check if there are hidden items above (off-screen due to section cutoff)
   const hasHiddenItemsAbove = currentItems.some((_, index) => {
     const offset = index - itemIndex;
-    const itemSpacing = window.innerHeight * 0.12;
+    const itemSpacing = window.innerHeight * 0.11;
     const translateY = offset * itemSpacing;
-    const sectionCutoff = window.innerHeight * 0.20;
+    const sectionCutoff = window.innerHeight * 0.22;
     const estimatedItemY = window.innerHeight / 2 + translateY;
     return estimatedItemY < sectionCutoff;
   });
@@ -117,13 +121,13 @@ export const XMBContainer = ({ data }) => {
         </div>
       )}
       
-      {/* Up Arrow for hidden items */}
+      {/* Up Arrow for hidden items - indicates more content above */}
       {hasHiddenItemsAbove && (
         <div 
           className="fixed z-40 flex items-center gap-2"
           style={{
             left: expandedFolder ? `calc(${HOT_SEAT_X} + 20px)` : `calc(${HOT_SEAT_X} - 80px)`,
-            top: '240px',
+            top: `calc(${SECTION_Y} + 80px)`, // Position below sections
           }}
         >
           <div className="flex flex-col items-center gap-1 animate-pulse">

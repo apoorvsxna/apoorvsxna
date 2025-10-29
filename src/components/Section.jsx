@@ -15,25 +15,29 @@ export const getIcon = (iconName, props = {}) => {
 export const Section = ({ section, isActive, expandedFolder, style }) => {
   return (
     <div
-      className="flex flex-col items-center gap-2 transition-all duration-500 ease-out"
+      className="flex flex-col items-center gap-1.5 md:gap-2 transition-all duration-500 ease-out"
       style={style}
     >
       {/* Section Icon */}
       <div
         className={`
-          w-16 h-16 flex items-center justify-center
+          w-12 h-12 md:w-16 md:h-16 flex items-center justify-center
           transition-all duration-300
           ${isActive ? 'text-white scale-110' : 'text-white/50 scale-100'}
         `}
         style={{ zIndex: 50 }}
       >
-        {getIcon(section.icon, { size: 40, strokeWidth: 1.5 })}
+        {getIcon(section.icon, { 
+          size: isActive ? 36 : 32,
+          strokeWidth: 1.5,
+          className: 'md:w-10 md:h-10'
+        })}
       </div>
 
       {/* Section Label */}
       <div
         className={`
-          text-sm font-light whitespace-nowrap
+          text-xs md:text-sm font-light whitespace-nowrap
           transition-all duration-300
           ${isActive ? 'text-white opacity-100' : 'text-white/50 opacity-70'}
         `}
