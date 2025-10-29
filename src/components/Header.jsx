@@ -32,7 +32,7 @@ export const Header = ({ profile }) => {
       {/* Profile Picture */}
       <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
         <img
-          src={profile.picture}
+          src={import.meta.env.BASE_URL + profile.picture.replace(/^\//, '')}
           alt={profile.name}
           className="w-full h-full object-cover"
           onError={(e) => {
