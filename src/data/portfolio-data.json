@@ -1,0 +1,140 @@
+{
+  "profile": {
+    "name": "Apoorv Saxena",
+    "picture": "/profile.jpg",
+    "cvLink": "#"
+  },
+  "sections": [
+    {
+      "id": "music",
+      "name": "Music",
+      "icon": "music",
+      "items": [
+        {
+          "type": "item",
+          "id": "favorite-genres",
+          "name": "Favorite Genres",
+          "description": "What I love to listen to",
+          "icon": "headphones",
+          "content": "# My Favorite Music Genres\n\nI enjoy a wide variety of music genres:\n\n- **Rock** - Classic and alternative rock\n- **Electronic** - Synthwave and ambient\n- **Jazz** - Smooth and bebop\n- **Classical** - Orchestral compositions\n\nMusic is a constant companion in my coding journey."
+        },
+        {
+          "type": "item",
+          "id": "playlist",
+          "name": "Current Playlist",
+          "icon": "list",
+          "content": "# Currently Playing\n\nMy coding playlist rotates frequently, but here are some favorites:\n\n1. Daft Punk - Random Access Memories\n2. Pink Floyd - Dark Side of the Moon\n3. Miles Davis - Kind of Blue"
+        }
+      ]
+    },
+    {
+      "id": "tech-skills",
+      "name": "Tech Skills",
+      "icon": "code",
+      "items": [
+        {
+          "type": "folder",
+          "id": "frontend",
+          "name": "Frontend Development",
+          "icon": "layout",
+          "items": [
+            {
+              "type": "item",
+              "id": "react",
+              "name": "React",
+              "description": "Building modern UIs",
+              "icon": "component",
+              "content": "# React Expertise\n\nI specialize in building modern, performant React applications:\n\n- **Hooks & Context** - State management\n- **Component Architecture** - Scalable patterns\n- **Performance Optimization** - Code splitting, memoization\n- **Testing** - Jest, React Testing Library"
+            },
+            {
+              "type": "item",
+              "id": "css",
+              "name": "CSS & Styling",
+              "description": "Tailwind, CSS-in-JS",
+              "icon": "palette",
+              "content": "# CSS & Styling\n\nExpert in modern CSS approaches:\n\n- Tailwind CSS\n- Styled Components\n- CSS Modules\n- Animations & Transitions"
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "id": "backend",
+          "name": "Backend Development",
+          "icon": "server",
+          "items": [
+            {
+              "type": "item",
+              "id": "nodejs",
+              "name": "Node.js",
+              "description": "Server-side JavaScript",
+              "icon": "box",
+              "content": "# Node.js Development\n\nBuilding scalable backend services:\n\n- Express.js\n- RESTful APIs\n- WebSocket communication\n- Database integration"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "id": "devops",
+          "name": "DevOps",
+          "description": "CI/CD and deployment",
+          "icon": "cloud",
+          "content": "# DevOps Skills\n\n- Docker containerization\n- GitHub Actions\n- Cloud platforms (AWS, Vercel)\n- Monitoring and logging"
+        }
+      ]
+    },
+    {
+      "id": "work-experience",
+      "name": "Work Experience",
+      "icon": "briefcase",
+      "items": [
+        {
+          "type": "item",
+          "id": "current-role",
+          "name": "Senior Developer",
+          "description": "2023 - Present",
+          "icon": "building",
+          "content": "# Senior Developer\n\n**Company:** Tech Corp\n**Duration:** 2023 - Present\n\n## Responsibilities\n\n- Lead frontend development team\n- Architecture design and code review\n- Mentoring junior developers\n- Performance optimization\n\n## Key Achievements\n\n- Reduced bundle size by 40%\n- Implemented new design system\n- Led migration to React 18"
+        },
+        {
+          "type": "item",
+          "id": "previous-role",
+          "name": "Full Stack Developer",
+          "description": "2020 - 2023",
+          "icon": "code-2",
+          "content": "# Full Stack Developer\n\n**Company:** Startup Inc\n**Duration:** 2020 - 2023\n\n## Key Projects\n\n- Built customer portal from scratch\n- Developed REST APIs\n- Implemented real-time features"
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "name": "Travel",
+      "icon": "plane",
+      "items": [
+        {
+          "type": "folder",
+          "id": "asia",
+          "name": "Asia",
+          "icon": "map",
+          "items": [
+            {
+              "type": "item",
+              "id": "japan",
+              "name": "Japan",
+              "description": "Tokyo, Kyoto, Osaka",
+              "icon": "map-pin",
+              "content": "# Japan Adventure\n\nAn incredible journey through Japan:\n\n## Cities Visited\n\n- **Tokyo** - Modern metropolis\n- **Kyoto** - Traditional temples\n- **Osaka** - Food paradise\n\n## Highlights\n\n- Cherry blossom season\n- Traditional tea ceremony\n- Mount Fuji visit"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "id": "europe",
+          "name": "European Tour",
+          "description": "Summer 2024",
+          "icon": "landmark",
+          "content": "# European Tour 2024\n\nExplored multiple countries across Europe:\n\n- France\n- Italy\n- Spain\n- Germany"
+        }
+      ]
+    }
+  ]
+}
