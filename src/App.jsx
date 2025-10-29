@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { XMBContainer } from './components/XMBContainer';
 import { Editor } from './components/EditorNew';
@@ -27,7 +27,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<XMBContainer data={portfolioData} />} />
         {/* Editor only available in development */}
@@ -46,7 +46,7 @@ function App() {
         {/* Redirect to home if trying to access editor in production */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
